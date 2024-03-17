@@ -47,7 +47,7 @@ pipeline {
         stage('Docker build') {
             steps {
                 script {
-                    docker.build(env.DOCKER_IMAGE_NAME)
+                    docker.build('mariamaccen/q1_lab3_mavenproj')
                 }
             }
         }
