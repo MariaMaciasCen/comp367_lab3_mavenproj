@@ -5,7 +5,7 @@ pipeline {
         // Make sure Maven is installed under this name in Global Tool Configuration
         maven 'MAVEN3' 
         // Ensure JDK is setup
-        jdk 'JDK17'
+        jdk 'JDK'
     }
     
     environment {
