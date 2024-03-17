@@ -7,13 +7,6 @@ pipeline {
         // Ensure JDK is setup
         jdk 'JDK'
     }
-    
-    environment {
-        DOCKER_REGISTRY = 'https://index.docker.io/v1/'
-        DOCKER_IMAGE_NAME = 'mariamaccen/q1_lab3_mavenproj'
-        DOCKER_USERNAME = 'mmaciasp@my.centennialcollege.ca'
-        DOCKER_PASSWORD = 'Docker123!'
-    }
 
     stages {
         stage('Checkout') {
@@ -57,7 +50,7 @@ pipeline {
     	    steps {
     	        script {
     	            withCredentials([string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
-                    	    bat "docker login -u mariamaccen -p Docker123!"
+                    	    bat "docker login -u mariamaccen -p %DOCKERHUB_PWD%"
                 		}
     	            }
     	        }
