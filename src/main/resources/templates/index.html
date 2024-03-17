@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Home page</title>
+</head>
+
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    function generateGreeting() {
+        var today = new Date();
+        var hour = today.getHours();
+        var greeting;
+
+        if (hour < 12) {
+            greeting = "Good morning!";
+        } else if (hour < 18) {
+            greeting = "Good afternoon!";
+        } else {
+            greeting = "Good evening!";
+        }
+
+        document.getElementById('greeting').innerText = greeting;
+    }
+</script>
+
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+        rel="stylesheet">
+        
+<body>
+
+	<body onload="generateGreeting()">
+		<h1 id="greeting"></h1>
+		<div class="container text-center">
+			Maria Macias, Welcome to COMP367
+		</div>
+	</body>
+
+</html>
