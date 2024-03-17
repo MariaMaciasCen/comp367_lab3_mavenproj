@@ -44,35 +44,33 @@ pipeline {
             }
         }
         
-        stage('Docker build') {
+        stage("Docker build") {
             steps {
-                script {
-                    docker.build('mariamaccen/q1_lab3_mavenproj')
+                script
+                {
+                    bat'docker build -t mariamaccen/q1_lab3_mavenproj:1.1 .'
                 }
             }
-        }
+        }      
 
-        stage('Docker login') {
+	    stage('Docker Login') {
+    	    steps {
+    	        script {
+    	            withCredentials([string(credentialsId: 'CredentialID_DockerHubPWD2', variable: 'DOCKERHUB_PWD')]) {
+                    	    bat "docker login -u mariamaccen -p Docker123!"
+                		}
+    	            }
+    	        }
+    	    }
+        
+        stage("Docker push") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                    script {
-                        docker.withRegistry(env.DOCKER_REGISTRY, env.DOCKER_USERNAME, env.DOCKER_PASSWORD) {
-                            // Login to Docker Hub
-                        }
-                    }
+                script
+                {
+                    bat'docker push mariamaccen/q1_lab3_mavenproj:1.1'
                 }
             }
-        }
-
-        stage('Docker push') {
-            steps {
-                script {
-                    docker.withRegistry(env.DOCKER_REGISTRY, env.DOCKER_USERNAME, env.DOCKER_PASSWORD) {
-                        docker.image(env.DOCKER_IMAGE_NAME).push('latest')
-                    }
-                }
-            }
-        }
+        } 
     }
 
     post {
