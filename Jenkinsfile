@@ -56,7 +56,7 @@ pipeline {
 	    stage('Docker Login') {
     	    steps {
     	        script {
-    	            withCredentials([string(credentialsId: 'mariamaccen', variable: 'DOCKER_PASSWORD')]) {
+    	            withCredentials([string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
                     	    bat "docker login -u mariamaccen -p Docker123!"
                 		}
     	            }
